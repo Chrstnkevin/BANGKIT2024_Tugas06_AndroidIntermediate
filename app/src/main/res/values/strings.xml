@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Submission1</string>
+
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Cek kesehatan kulit kamu, jangan-jangan kamu terkena penyakit yang berbahaya! </string>
+    <string name="title_welcome_page">Selamat datang Pejuang!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+
+    <string name="tittlealertdialog">Ntabs Bangku!</string>
+    <string name="contentalertdialog">Selamat Bereksplorasi</string>
+    <string name="next">Selanjutnya</string>
+    <string name="failed">Pendaftaran Gagal</string>
+
+    <string name="add">Add</string>
+    <string name="home">Home</string>
+
+    <string name="profilename">Profile Name</string>
+    <string name="description">Ini Deskripsi Story</string>
+    <string name="inputdescription">Masukkan Deskripsi Story</string>
+    <string name="date">Tanggal</string>
+    <string name="detailstory">Ini Detail Story</string>
+    <string name="nameinvalid">Nama Salah</string>
+    <string name="emailinvaild">Masukkan Email yang Benar</string>
+    <string name="passwordinvalid">Masukkan Password 8 karakter</string>
+
+    <string name="galeri">Galeri</string>
+    <string name="kamera">Kamera</string>
+    <string name="upload">Kirim Sekarang</string>
+    <string name="confirmExit">Konfirmasi Keluar</string>
+    <string name="exit">Apakah anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="storyEmpty">Cerita masih kosong</string>
+    <string name="token">Token is Invalid</string>
+    <string name="empty_image">Image is Empty</string>
+    <string name="uploadSuccess">Berhasil!</string>
+    <string name="storyUploadSuccess">Konten Berhasil diupload</string>
+    <string name="alert_invalid_email">Email Invalid</string>
+    <string name="passMustbe">password harus berisi minimal 8 karakter</string>
+    <string name="signupFail">Pendaftaran Gagal\n</string>
+</resources>
