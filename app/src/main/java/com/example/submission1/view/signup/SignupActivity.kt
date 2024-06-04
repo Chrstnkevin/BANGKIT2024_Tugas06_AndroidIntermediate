@@ -33,8 +33,15 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
         setupAction()
+        setupView()
+        playAnimation()
+
+        binding.signupButton.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBar = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBar.left, systemBar.top, systemBar.right, systemBar.bottom)
@@ -42,49 +49,66 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
+//    private fun setupAction() {
+//        binding.signupButton.setOnClickListener {
+//            val name = binding.nameEditText.text.toString()
+//            val email = binding.emailEditText.text.toString()
+//            val password = binding.passwordEditText.text.toString()
+//
+//            when {
+//                name.isEmpty() -> {
+//                    binding.nameEditText.error = getString(R.string.nameinvalid)
+//                }
+//                email.isEmpty() -> {
+//                    binding.emailEditText.error = getString(R.string.emailinvaild)
+//                }
+//                password.isEmpty() -> {
+//                    binding.passwordEditText.error = getString(R.string.passwordinvalid)
+//                }
+//                else -> {
+//                    showLoading(true)
+//                    viewModel.signup(name, email, password)
+//                    viewModel.isLoading.observe(this, Observer { isLoading ->
+//                        showLoading(isLoading)
+//                        if (!isLoading) {
+//                            AlertDialog.Builder(this).apply {
+//                                setTitle("Yahh!")
+//                                val message = getString(R.string.contentalertdialog, email)
+//                                setMessage(message)
+//                                setPositiveButton(getString(R.string.next)) { _, _ ->
+//                                    val intent = Intent(context, LoginActivity::class.java)
+//                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                                    startActivity(intent)
+//                                    finish()
+//                                }
+//                                create()
+//                                show()
+//                            }.also {
+//                                Snackbar.make(binding.root, getString(R.string.signupFail), Snackbar.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//        }
+//    }
+
     private fun setupAction() {
         binding.signupButton.setOnClickListener {
-            val name = binding.nameEditText.text.toString()
             val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
 
-            when {
-                name.isEmpty() -> {
-                    binding.nameEditText.error = getString(R.string.nameinvalid)
+            AlertDialog.Builder(this).apply {
+                setTitle("Yeah!")
+                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan lihat story.")
+                setPositiveButton("Lanjut") { _, _ ->
+                    finish()
                 }
-                email.isEmpty() -> {
-                    binding.emailEditText.error = getString(R.string.emailinvaild)
-                }
-                password.isEmpty() -> {
-                    binding.passwordEditText.error = getString(R.string.passwordinvalid)
-                }
-                else -> {
-                    showLoading(true)
-                    viewModel.signup(name, email, password)
-                    viewModel.isLoading.observe(this, Observer { isLoading ->
-                        showLoading(isLoading)
-                        if (!isLoading) {
-                            AlertDialog.Builder(this).apply {
-                                setTitle("Yahh!")
-                                val message = getString(R.string.contentalertdialog, email)
-                                setMessage(message)
-                                setPositiveButton(getString(R.string.next)) { _, _ ->
-                                    val intent = Intent(context, LoginActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                    startActivity(intent)
-                                    finish()
-                                }
-                                create()
-                                show()
-                            }.also {
-                                Snackbar.make(binding.root, getString(R.string.signupFail), Snackbar.LENGTH_SHORT).show()
-                            }
-                        }
-                    })
-                }
+                create()
+                show()
             }
         }
     }
+
 
     private fun setupView() {
         @Suppress("DEPRECATION")
@@ -101,5 +125,45 @@ class SignupActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageViewSignup, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
+        val message =
+            ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
+        val nameTextView =
+            ObjectAnimator.ofFloat(binding.nameTextViewSignup, View.ALPHA, 1f).setDuration(100)
+        val nameEditTextLayout =
+            ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val emailTextView =
+            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
+        val emailEditTextLayout =
+            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val passwordTextView =
+            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
+        val passwordEditTextLayout =
+            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val login = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(100)
+
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                message,
+                nameTextView,
+                nameEditTextLayout,
+                emailTextView,
+                emailEditTextLayout,
+                passwordTextView,
+                passwordEditTextLayout,
+                login
+            )
+            startDelay = 100
+        }.start()
     }
 }

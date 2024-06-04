@@ -64,7 +64,7 @@
         app:startIconDrawable="@drawable/baseline_person_24"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.submission1.view.welcome.NameEditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.submission1.view.welcome.EmailEditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
         tools:alpha="100">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.submission1.view.welcome.PasswordEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

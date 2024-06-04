@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeLogout(){
-        binding.bottomAppBar.setOnMenuItemClickListener{menuItem ->
+        binding.bottomNavigationView.setOnItemSelectedListener {  menuItem ->
             when (menuItem.itemId){
                 R.id.logoutmenu -> {
                     binding.bottomAppBar.setOnMenuItemClickListener(null)
