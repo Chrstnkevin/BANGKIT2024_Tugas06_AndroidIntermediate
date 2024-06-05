@@ -27,14 +27,12 @@ class SignupViewModel(private val userRepo: UserRepository) : ViewModel() {
             try {
                 val message = userRepo.signup(name, email, password)
                 _signupResponse.value = message // Assuming SignupResponse contains relevant data
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, AddStoryGuestResponse::class.java)
-                val errorMessage = errorBody.message ?: "Unknown Error!!"
-                _isError.value = errorMessage
+            } catch (e: Exception) {
+                _isError.value = e.message ?: "Unknown Error"
             } finally {
                 _isLoading.value = false
             }
         }
     }
+
 }
