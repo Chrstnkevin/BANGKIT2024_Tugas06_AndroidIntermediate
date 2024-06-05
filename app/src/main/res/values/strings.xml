@@ -48,4 +48,5 @@
     <string name="passMustbe">password harus berisi minimal 8 karakter</string>
     <string name="signupFail">Pendaftaran Gagal\n</string>
     <string name="nameNone">Jangan Mengosongkan Nama</string>
+    <string name="account_created">Akun Berhasil dibuat!</string>
 </resources>

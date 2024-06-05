@@ -94,17 +94,45 @@ class SignupActivity : AppCompatActivity() {
 //    }
 
     private fun setupAction() {
-        binding.signupButton.setOnClickListener {
+        binding.signupButton.setOnClickListener{
+            val name = binding.nameEditText.text.toString()
             val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.toString()
 
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan lihat story.")
-                setPositiveButton("Lanjut") { _, _ ->
-                    finish()
+            when {
+                name.isEmpty()-> {
+                    binding.nameEditText.error = getString(R.string.nameinvalid)
                 }
-                create()
-                show()
+                email.isEmpty()-> {
+                    binding.emailEditText.error  = getString(R.string.emailinvaild)
+                }
+                password.isEmpty()-> {
+                    binding.passwordEditText.error = getString(R.string.passwordinvalid)
+                } else -> {
+                showLoading(true)
+                viewModel.signup(name, email, password)
+                viewModel.isLoading.observe(this, Observer { isLoading ->
+                    if (isLoading){
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Yosh!")
+                            val message = getString(R.string.account_created, email)
+                            setMessage(message)
+                            setPositiveButton(getString(R.string.next)){ _, _ ->
+                                val intent = Intent(context, LoginActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
+                            }
+                            create()
+                            show()
+                        }
+                    } else {
+                        Snackbar.make(binding.root, getString(R.string.signupFail), Snackbar.LENGTH_SHORT).show()
+                    }
+                    showLoading(false)
+                })
+                setupView()
+            }
             }
         }
     }
